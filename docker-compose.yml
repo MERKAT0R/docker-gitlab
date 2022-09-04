@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  gitlab:
+    image: pavelwolfdark/gitlab:latest
+    container_name: gitlab
+    restart: always
+    ports:
+      - '22:22'
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./config:/etc/gitlab
+      - ./data:/var/opt/gitlab
+      - ./logs:/var/log/gitlab
+    shm_size: 256M
+    depends_on:
+      - gitlab-license
+  gitlab-license:
+    image: pavelwolfdark/gitlab:license
+    container_name: gitlab-license
+    volumes:
+      - ./config:/etc/gitlab
+    command:
+      --name='Pavel Wolf'
+      --company=Darkwolf
+      --email=cyberviking@darkwolf.team
+      --export=GitLab.gitlab-license
