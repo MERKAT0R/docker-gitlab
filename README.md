@@ -1,2 +1,2 @@
-# docker-gitlab
-Docker images for GitLab
+# GitLab
+https://hub.docker.com/r/pavelwolfdark/gitlab
